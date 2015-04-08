@@ -1,6 +1,6 @@
 # Currency for Laravel 5
 
-[![Latest Stable Version](https://poser.pugx.org/torann/currency/v/stable.png)](https://packagist.org/packages/torann/currency) [![Total Downloads](https://poser.pugx.org/torann/currency/downloads.png)](https://packagist.org/packages/torann/currency)
+[![Latest Stable Version](https://poser.pugx.org/casinelli/currency/v/stable.png)](https://packagist.org/packages/casinelli/currency) [![Total Downloads](https://poser.pugx.org/casinelli/currency/downloads.png)](https://packagist.org/packages/casinelli/currency)
 
 Handles currency for Laravel 5.
 
@@ -8,13 +8,13 @@ Handles currency for Laravel 5.
 
 ## Installation
 
-- [Currency on Packagist](https://packagist.org/packages/torann/currency)
-- [Currency on GitHub](https://github.com/torann/laravel-currency)
+- [Currency on Packagist](https://packagist.org/packages/casinelli/currency)
+- [Currency on GitHub](https://github.com/casinelli/laravel-currency)
 
 To get the latest version of Currency simply require it in your `composer.json` file.
 
 ~~~
-"torann/currency": "dev-master"
+"casinelli/currency": "dev-master"
 ~~~
 
 You'll then need to run `composer install` to download it and have the autoloader updated.
@@ -24,7 +24,7 @@ Once Currency is installed you need to register the service provider with the ap
 ~~~php
 'providers' => array(
 
-    'Torann\Currency\CurrencyServiceProvider',
+    'Casinelli\Currency\CurrencyServiceProvider',
 
 )
 ~~~
@@ -34,7 +34,7 @@ Currency also ships with a facade which provides the static syntax for creating 
 ~~~php
 'aliases' => array(
 
-    'Currency' => 'Torann\Currency\Facades\Currency',
+    'Currency' => 'Casinelli\Currency\Facades\Currency',
 
 )
 ~~~
@@ -42,13 +42,13 @@ Currency also ships with a facade which provides the static syntax for creating 
 Create configuration file using artisan
 
 ~~~
-$ php artisan config:publish torann/currency
+$ php artisan config:publish casinelli/currency
 ~~~
 
 Generate the table by running
 
 ~~~
-$ php artisan migrate --package=torann/currency
+$ php artisan migrate --package=casinelli/currency
 ~~~
 
 ## Artisan Commands
