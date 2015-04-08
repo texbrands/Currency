@@ -8,7 +8,7 @@ class CreateCurrencyTable extends Migration {
 
 	public function __construct()
 	{
-		$this->table_name = Config::get('currency::table_name');
+		$this->table_name = Config::get('currency.table_name');
 	}
 
 	/**

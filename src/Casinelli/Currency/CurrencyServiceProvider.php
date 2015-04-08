@@ -18,7 +18,13 @@ class CurrencyServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('casinelli/currency');
+		$this->publishes([
+			__DIR__.'/../config/currency.php' => config_path('currency.php'),
+	    ], 'config');
+
+		$this->publishes([
+			__DIR__.'/../migrations' => base_path('/database/migrations'),
+		], 'migrations');
 	}
 
 	/**
@@ -28,6 +34,8 @@ class CurrencyServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		$this->mergeConfigFrom(__DIR__.'/../config/currency.php', 'currency');
+
 		// Register providers.
 		$this->registerCurrency();
 

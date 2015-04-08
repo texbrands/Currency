@@ -57,7 +57,7 @@ class Currency {
 		}
 		else
 		{
-			$this->setCurrency($this->app['config']['currency::default']);
+			$this->setCurrency($this->app['config']['currency.default']);
 		}
 	}
 
@@ -104,7 +104,7 @@ class Currency {
 		{
 			$string .= str_replace('%symbol%', $symbol_left, $symbol_style);
 
-			if ($this->app['config']['currency::use_space'])
+			if ($this->app['config']['currency.use_space'])
 			{
 				$string .= ' ';
 			}
@@ -151,7 +151,7 @@ class Currency {
 
 		if ($symbol_right)
 		{
-			if ($this->app['config']['currency::use_space'])
+			if ($this->app['config']['currency.use_space'])
 			{
 				$string .= ' ';
 			}
@@ -253,7 +253,7 @@ class Currency {
 		$this->currencies = Cache::rememberForever('casinelli.currency', function() use($db)
 		{
 			$cache      = array();
-			$table_name = $this->app['config']['currency::table_name'];
+			$table_name = $this->app['config']['currency.table_name'];
 
 			foreach ($db->table($table_name)->get() as $currency)
 			{

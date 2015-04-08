@@ -46,7 +46,7 @@ class CurrencyUpdateCommand extends Command {
 	public function __construct($app)
 	{
 		$this->app        = $app;
-		$this->table_name = $app['config']['currency::table_name'];
+		$this->table_name = $app['config']['currency.table_name'];
 
 		parent::__construct();
 	}
@@ -59,11 +59,11 @@ class CurrencyUpdateCommand extends Command {
 	public function fire()
 	{
 		// Get Settings
-		$defaultCurrency = $this->app['config']['currency::default'];
+		$defaultCurrency = $this->app['config']['currency.default'];
 
 		if ($this->input->getOption('openexchangerates'))
 		{
-			if ( ! $api = $this->app['config']['currency::api_key'])
+			if ( ! $api = $this->app['config']['currency.api_key'])
 			{
 				$this->error('An API key is needed from OpenExchangeRates.org to continue.');
 				return;
