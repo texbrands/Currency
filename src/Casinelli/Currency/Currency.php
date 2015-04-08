@@ -1,4 +1,4 @@
-<?php namespace Torann\Currency;
+<?php namespace Casinelli\Currency;
 
 use DB;
 use Cache;
@@ -250,7 +250,7 @@ class Currency {
 	{
 		$db = $this->app['db'];
 
-		$this->currencies = Cache::rememberForever('torann.currency', function() use($db)
+		$this->currencies = Cache::rememberForever('casinelli.currency', function() use($db)
 		{
 			$cache      = array();
 			$table_name = $this->app['config']['currency::table_name'];

@@ -1,4 +1,4 @@
-<?php namespace Torann\Currency\Facades;
+<?php namespace Casinelli\Currency\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

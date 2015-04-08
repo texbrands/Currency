@@ -1,4 +1,4 @@
-<?php namespace Torann\Currency;
+<?php namespace Casinelli\Currency;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class CurrencyServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('torann/currency');
+		$this->package('casinelli/currency');
 	}
 
 	/**

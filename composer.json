@@ -1,23 +1,27 @@
 {
-    "name": "torann/currency",
-    "description": "This provides Laravel 4 with currency functions.",
-    "keywords": ["laravel", "laravel4", "currency", "money", "exchange rate"],
+    "name": "casinelli/currency",
+    "description": "Handles currency for Laravel 5.",
+    "keywords": ["laravel", "laravel5", "currency", "money", "exchange rate"],
 	"license": "BSD 2-Clause",
     "authors": [
         {
             "name": "Daniel Stainback",
             "email": "daniel@lyften.com"
+        },
+        {
+            "name": "Giovanni Casinelli",
+            "email": "giovanni.casinelli@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "~4.1",
-        "illuminate/view": "~4.1",
-        "illuminate/cache": "~4.1"
+        "illuminate/support": "~5.0",
+        "illuminate/view": "~5.0",
+        "illuminate/cache": "~5.0"
     },
     "autoload": {
         "psr-0": {
-            "Torann\\Currency": "src/"
+            "Casinelli\\Currency": "src/"
         }
     },
     "extra": {

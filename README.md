@@ -1,8 +1,8 @@
-# Currency for Laravel 4 - Beta
+# Currency for Laravel 5
 
 [![Latest Stable Version](https://poser.pugx.org/torann/currency/v/stable.png)](https://packagist.org/packages/torann/currency) [![Total Downloads](https://poser.pugx.org/torann/currency/downloads.png)](https://packagist.org/packages/torann/currency)
 
-This provides Laravel 4 with currency functions.
+Handles currency for Laravel 5.
 
 ----------
 
@@ -93,14 +93,3 @@ echo Currency::format(12.00, 'USD');
 ~~~
 
 ## Change Log
-
-#### v0.1.1
-
-- Added support for OpenExchangeRates.org
-- Added a cleanup Artisan command
-- Refactored caching
-- Fixed bug in the commands
-
-#### v0.1.0
-
-- First release

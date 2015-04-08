@@ -1,4 +1,4 @@
-<?php namespace Torann\Currency\Commands;
+<?php namespace Casinelli\Currency\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -115,7 +115,7 @@ class CurrencyUpdateCommand extends Command {
 				}
 			}
 
-			Cache::forget('torann.currency');
+			Cache::forget('casinelli.currency');
 		}
 
 		$this->info('Update!');
@@ -149,7 +149,7 @@ class CurrencyUpdateCommand extends Command {
 				));
 		}
 
-		Cache::forget('torann.currency');
+		Cache::forget('casinelli.currency');
 
 		$this->info('Update!');
 	}

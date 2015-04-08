@@ -1,4 +1,4 @@
-<?php namespace Torann\Currency\Commands;
+<?php namespace Casinelli\Currency\Commands;
 
 use Illuminate\Console\Command;
 
@@ -44,7 +44,7 @@ class CurrencyCleanupCommand extends Command {
 	 */
 	public function fire()
 	{
-		Cache::forget('torann.currency');
+		Cache::forget('casinelli.currency');
 
 		$this->info('Currency cache cleaned.');
 	}
