@@ -39,16 +39,10 @@ Currency also ships with a facade which provides the static syntax for creating 
 ]
 ~~~
 
-Create configuration file using artisan
+Create configuration file and migration table using artisan
 
 ~~~
-$ php artisan config:publish casinelli/currency
-~~~
-
-Generate the table by running
-
-~~~
-$ php artisan migrate --package=casinelli/currency
+$ php artisan vendor:publish
 ~~~
 
 ## Artisan Commands
