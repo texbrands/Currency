@@ -67,7 +67,7 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$currency]['symbol_left'];
 			$symbol_right   = $this->currencies[$currency]['symbol_right'];
-			if ( ! is_null($decimal_place))
+			if (is_null($decimal_place))
 			{
 				$decimal_place  = $this->currencies[$currency]['decimal_place'];
 			}
@@ -78,7 +78,7 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$this->code]['symbol_left'];
 			$symbol_right   = $this->currencies[$this->code]['symbol_right'];
-			if ( ! is_null($decimal_place))
+			if (is_null($decimal_place))
 			{
 				$decimal_place  = $this->currencies[$this->code]['decimal_place'];
 			}
