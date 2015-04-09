@@ -83,7 +83,7 @@ class CurrencyUpdateCommand extends Command {
 	{
 		$this->info('Updating currency exchange rates from Finance Yahoo...');
 
-		$data = array();
+		$data = [];
 
 		// Get all currencies
 		foreach($this->app['db']->table($this->table_name)->get() AS $currency)
@@ -108,10 +108,10 @@ class CurrencyUpdateCommand extends Command {
 				{
 					$this->app['db']->table($this->table_name)
 						->where('code', $code)
-						->update(array(
+						->update([
 							'value'      => $value,
 							'updated_at' => new DateTime('now'),
-						));
+						]);
 				}
 			}
 
@@ -143,10 +143,10 @@ class CurrencyUpdateCommand extends Command {
 		{
 			$this->app['db']->table($this->table_name)
 				->where('code', $code)
-				->update(array(
+				->update([
 					'value'      => $value,
 					'updated_at' => $timestamp
-				));
+				]);
 		}
 
 		Cache::forget('casinelli.currency');
@@ -180,8 +180,8 @@ class CurrencyUpdateCommand extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
-			array('openexchangerates', 'o', InputOption::VALUE_NONE, 'Get rates from OpenExchangeRates.org')
-		);
+		return [
+			['openexchangerates', 'o', InputOption::VALUE_NONE, 'Get rates from OpenExchangeRates.org']
+		];
 	}
 }

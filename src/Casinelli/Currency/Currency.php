@@ -27,7 +27,7 @@ class Currency {
 	 *
 	 * @var array
 	 */
-	protected $currencies = array();
+	protected $currencies = [];
 
 	/**
 	 * Create a new instance.
@@ -67,7 +67,10 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$currency]['symbol_left'];
 			$symbol_right   = $this->currencies[$currency]['symbol_right'];
-			if ( ! $decimal_place ) $decimal_place  = $this->currencies[$currency]['decimal_place'];
+			if ( ! is_null($decimal_place))
+			{
+				$decimal_place  = $this->currencies[$currency]['decimal_place'];
+			}
 			$decimal_point  = $this->currencies[$currency]['decimal_point'];
 			$thousand_point = $this->currencies[$currency]['thousand_point'];
 		}
@@ -75,7 +78,10 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$this->code]['symbol_left'];
 			$symbol_right   = $this->currencies[$this->code]['symbol_right'];
-			if ( ! $decimal_place ) $decimal_place  = $this->currencies[$this->code]['decimal_place'];
+			if ( ! is_null($decimal_place))
+			{
+				$decimal_place  = $this->currencies[$this->code]['decimal_place'];
+			}
 			$decimal_point  = $this->currencies[$this->code]['decimal_point'];
 			$thousand_point = $this->currencies[$this->code]['thousand_point'];
 
@@ -257,12 +263,12 @@ class Currency {
 
 		$this->currencies = Cache::rememberForever('casinelli.currency', function() use($db)
 		{
-			$cache      = array();
+			$cache      = [];
 			$table_name = $this->app['config']['currency.table_name'];
 
 			foreach ($db->table($table_name)->get() as $currency)
 			{
-				$cache[$currency->code] = array(
+				$cache[$currency->code] = [
 					'id'             => $currency->id,
 					'title'          => $currency->title,
 					'symbol_left'    => $currency->symbol_left,
@@ -272,7 +278,7 @@ class Currency {
 					'decimal_point'  => $currency->decimal_point,
 					'thousand_point' => $currency->thousand_point,
 					'code'           => $currency->code,
-				);
+				];
 			}
 
 			return $cache;
