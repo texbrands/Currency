@@ -183,9 +183,9 @@ class Currency {
 		return number_format(round($value, (int) $dec), (int) $dec, '.', '');
 	}
 
-	public function rounded($number, $decimal_place = 0)
+	public function rounded($number, $decimal_place = 0, $currency = null)
 	{
-		return $this->format( $number, null, '%symbol%', false, '', null, $decimal_place );
+		return $this->format( $number, $currency, '%symbol%', false, '', null, $decimal_place );
 	}
 
 	public function getCurrencySymbol($right = false)
