@@ -22,21 +22,21 @@ You'll then need to run `composer install` to download it and have the autoloade
 Once Currency is installed you need to register the service provider with the application. Open up `app/config/app.php` and find the `providers` key.
 
 ~~~php
-'providers' => array(
+'providers' => [
 
     'Casinelli\Currency\CurrencyServiceProvider',
 
-)
+]
 ~~~
 
 Currency also ships with a facade which provides the static syntax for creating collections. You can register the facade in the `aliases` key of your `app/config/app.php` file.
 
 ~~~php
-'aliases' => array(
+'aliases' => [
 
     'Currency' => 'Casinelli\Currency\Facades\Currency',
 
-)
+]
 ~~~
 
 Create configuration file using artisan
@@ -90,6 +90,15 @@ Using the Blade helper
 
 ~~~php
 echo Currency::format(12.00, 'USD');
+~~~
+
+For easy output of rounded values:
+
+~~~php
+echo Currency::rounded(12.80);  // Will output $12
+
+// All the parameters
+echo Currency::rounded(12.80, 0, 'USD');
 ~~~
 
 ## Change Log
