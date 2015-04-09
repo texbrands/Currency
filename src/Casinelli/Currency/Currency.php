@@ -61,13 +61,13 @@ class Currency {
 		}
 	}
 
-	public function format($number, $currency = null, $symbol_style = '%symbol%', $inverse = false, $rounding_type = '', $precision = null)
+	public function format($number, $currency = null, $symbol_style = '%symbol%', $inverse = false, $rounding_type = '', $precision = null, $decimal_place = null)
 	{
 		if ($currency && $this->hasCurrency($currency))
 		{
 			$symbol_left    = $this->currencies[$currency]['symbol_left'];
 			$symbol_right   = $this->currencies[$currency]['symbol_right'];
-			$decimal_place  = $this->currencies[$currency]['decimal_place'];
+			if ( ! $decimal_place ) $decimal_place  = $this->currencies[$currency]['decimal_place'];
 			$decimal_point  = $this->currencies[$currency]['decimal_point'];
 			$thousand_point = $this->currencies[$currency]['thousand_point'];
 		}
@@ -75,7 +75,7 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$this->code]['symbol_left'];
 			$symbol_right   = $this->currencies[$this->code]['symbol_right'];
-			$decimal_place  = $this->currencies[$this->code]['decimal_place'];
+			if ( ! $decimal_place ) $decimal_place  = $this->currencies[$this->code]['decimal_place'];
 			$decimal_point  = $this->currencies[$this->code]['decimal_point'];
 			$thousand_point = $this->currencies[$this->code]['thousand_point'];
 
@@ -181,6 +181,11 @@ class Currency {
 		}
 
 		return number_format(round($value, (int) $dec), (int) $dec, '.', '');
+	}
+
+	public function rounded($number, $decimal_place = 0)
+	{
+		return $this->format( $number, null, '%symbol%', false, '', null, $decimal_place );
 	}
 
 	public function getCurrencySymbol($right = false)
