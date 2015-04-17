@@ -191,7 +191,7 @@ class Currency {
 
 	public function rounded($number, $decimal_place = 0, $currency = null)
 	{
-		return $this->format( $number, $currency, '%symbol%', false, '', null, $decimal_place );
+		return $this->style( $number, $currency, '%symbol%', false, '', null, $decimal_place );
 	}
 
 	public function getCurrencySymbol($right = false)
@@ -261,16 +261,15 @@ class Currency {
 	}
 
 	// Same as format, but without any value conversion
-	public function style($number, $currency = null, $symbol_style = '%symbol%', $inverse = false, $rounding_type = '', $precision = null, $decimal_place = null)
+	public function style($number, $currency = null, $decimal_place = null)
 	{
+		$symbol_style = '%symbol%';
+
 		if ($currency && $this->hasCurrency($currency))
 		{
 			$symbol_left    = $this->currencies[$currency]['symbol_left'];
 			$symbol_right   = $this->currencies[$currency]['symbol_right'];
-			if (is_null($decimal_place))
-			{
-				$decimal_place  = $this->currencies[$currency]['decimal_place'];
-			}
+			if (is_null($decimal_place)) $decimal_place  = $this->currencies[$currency]['decimal_place'];
 			$decimal_point  = $this->currencies[$currency]['decimal_point'];
 			$thousand_point = $this->currencies[$currency]['thousand_point'];
 		}
@@ -278,10 +277,7 @@ class Currency {
 		{
 			$symbol_left    = $this->currencies[$this->code]['symbol_left'];
 			$symbol_right   = $this->currencies[$this->code]['symbol_right'];
-			if (is_null($decimal_place))
-			{
-				$decimal_place  = $this->currencies[$this->code]['decimal_place'];
-			}
+			if (is_null($decimal_place)) $decimal_place  = $this->currencies[$this->code]['decimal_place'];
 			$decimal_point  = $this->currencies[$this->code]['decimal_point'];
 			$thousand_point = $this->currencies[$this->code]['thousand_point'];
 
@@ -302,44 +298,9 @@ class Currency {
 			}
 		}
 
-		switch ($rounding_type)
-		{
-			case 'ceil':
-			case 'ceiling':
-				if ($precision != null)
-				{
-					$multiplier = pow(10, -(int) $precision);
-				}
-				else
-				{
-					$multiplier = pow(10, -(int) $decimal_place);
-				}
+		$precision = (int) $decimal_place;
 
-				$string .= number_format(ceil($value / $multiplier) * $multiplier, (int) $decimal_place, $decimal_point, $thousand_point);
-				break;
-
-			case 'floor':
-				if ($precision != null)
-				{
-					$multiplier = pow(10, -(int) $precision);
-				}
-				else
-				{
-					$multiplier = pow(10, -(int) $decimal_place);
-				}
-
-				$string .= number_format(floor($value / $multiplier) * $multiplier, (int) $decimal_place, $decimal_point, $thousand_point);
-				break;
-
-			default:
-				if ($precision == null)
-				{
-					$precision = (int) $decimal_place;
-				}
-
-				$string .= number_format(round($value, (int) $precision), (int) $decimal_place, $decimal_point, $thousand_point);
-				break;
-		}
+		$string .= number_format(round($value, (int) $precision), (int) $decimal_place, $decimal_point, $thousand_point);
 
 		if ($symbol_right)
 		{
