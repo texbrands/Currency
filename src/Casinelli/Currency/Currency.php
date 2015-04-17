@@ -257,7 +257,7 @@ class Currency {
 		$fromCurrency = $this->getCurrency($fromCurrencyCode);
 		$toCurrency = $this->getCurrency($toCurrencyCode);
 
-		return round($number / $fromCurrency->value * $toCurrency->value, 2);
+		return round($number / $fromCurrency['value'] * $toCurrency['value'], 2);
 	}
 
 	/**
