@@ -260,6 +260,100 @@ class Currency {
 		return round($number / $fromCurrency['value'] * $toCurrency['value'], 2);
 	}
 
+	// Same as format, but without any value conversion
+	public function style($number, $currency = null, $symbol_style = '%symbol%', $inverse = false, $rounding_type = '', $precision = null, $decimal_place = null)
+	{
+		if ($currency && $this->hasCurrency($currency))
+		{
+			$symbol_left    = $this->currencies[$currency]['symbol_left'];
+			$symbol_right   = $this->currencies[$currency]['symbol_right'];
+			if (is_null($decimal_place))
+			{
+				$decimal_place  = $this->currencies[$currency]['decimal_place'];
+			}
+			$decimal_point  = $this->currencies[$currency]['decimal_point'];
+			$thousand_point = $this->currencies[$currency]['thousand_point'];
+		}
+		else
+		{
+			$symbol_left    = $this->currencies[$this->code]['symbol_left'];
+			$symbol_right   = $this->currencies[$this->code]['symbol_right'];
+			if (is_null($decimal_place))
+			{
+				$decimal_place  = $this->currencies[$this->code]['decimal_place'];
+			}
+			$decimal_point  = $this->currencies[$this->code]['decimal_point'];
+			$thousand_point = $this->currencies[$this->code]['thousand_point'];
+
+			$currency = $this->code;
+		}
+
+		$value = $number;
+
+		$string = '';
+
+		if ($symbol_left)
+		{
+			$string .= str_replace('%symbol%', $symbol_left, $symbol_style);
+
+			if ($this->app['config']['currency.use_space'])
+			{
+				$string .= ' ';
+			}
+		}
+
+		switch ($rounding_type)
+		{
+			case 'ceil':
+			case 'ceiling':
+				if ($precision != null)
+				{
+					$multiplier = pow(10, -(int) $precision);
+				}
+				else
+				{
+					$multiplier = pow(10, -(int) $decimal_place);
+				}
+
+				$string .= number_format(ceil($value / $multiplier) * $multiplier, (int) $decimal_place, $decimal_point, $thousand_point);
+				break;
+
+			case 'floor':
+				if ($precision != null)
+				{
+					$multiplier = pow(10, -(int) $precision);
+				}
+				else
+				{
+					$multiplier = pow(10, -(int) $decimal_place);
+				}
+
+				$string .= number_format(floor($value / $multiplier) * $multiplier, (int) $decimal_place, $decimal_point, $thousand_point);
+				break;
+
+			default:
+				if ($precision == null)
+				{
+					$precision = (int) $decimal_place;
+				}
+
+				$string .= number_format(round($value, (int) $precision), (int) $decimal_place, $decimal_point, $thousand_point);
+				break;
+		}
+
+		if ($symbol_right)
+		{
+			if ($this->app['config']['currency.use_space'])
+			{
+				$string .= ' ';
+			}
+
+			$string .= str_replace('%symbol%', $symbol_right, $symbol_style);
+		}
+
+		return $string;
+	}
+
 	/**
 	 * Initialize Currencies.
 	 *
