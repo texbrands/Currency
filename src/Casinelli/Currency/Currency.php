@@ -252,6 +252,14 @@ class Currency {
 		}
 	}
 
+	public function convert($number, $fromCurrencyCode, $toCurrencyCode)
+	{
+		$fromCurrency = $this->getCurrency($fromCurrencyCode);
+		$toCurrency = $this->getCurrency($toCurrencyCode);
+
+		return round($number / $fromCurrency->value * $toCurrency->value, 2);
+	}
+
 	/**
 	 * Initialize Currencies.
 	 *
