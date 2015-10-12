@@ -2,7 +2,6 @@
 
 namespace Casinelli\Currency;
 
-use DB;
 use Cache;
 use Input;
 use Cookie;
