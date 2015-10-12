@@ -1,51 +1,48 @@
-<?php namespace Casinelli\Currency\Commands;
+<?php
+
+namespace Casinelli\Currency\Commands;
 
 use Illuminate\Console\Command;
-
 use Cache;
 
-class CurrencyCleanupCommand extends Command {
+class CurrencyCleanupCommand extends Command
+{
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'currency:cleanup';
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'currency:cleanup';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Cleanup currency cache';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Cleanup currency cache';
+    /**
+     * Application instance.
+     *
+     * @var Illuminate\Foundation\Application
+     */
+    protected $app;
 
-	/**
-	 * Application instance
-	 *
-	 * @var Illuminate\Foundation\Application
-	 */
-	protected $app;
+    /**
+     * Create a new command instance.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    /**
+     * Execute the console command.
+     */
+    public function fire()
+    {
+        Cache::forget('casinelli.currency');
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return void
-	 */
-	public function fire()
-	{
-		Cache::forget('casinelli.currency');
-
-		$this->info('Currency cache cleaned.');
-	}
+        $this->info('Currency cache cleaned.');
+    }
 }
