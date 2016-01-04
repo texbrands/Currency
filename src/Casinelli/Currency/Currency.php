@@ -157,7 +157,7 @@ class Currency
 
     public function rounded($number, $decimal_place = 0, $currency = null)
     {
-        return $this->style($number, $currency, '%symbol%', false, '', null, $decimal_place);
+        return $this->style($number, $currency, $decimal_place);
     }
 
     public function getCurrencySymbol($right = false)
