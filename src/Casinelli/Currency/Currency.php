@@ -182,8 +182,10 @@ class Currency
             Session::set('currency', $currency);
         }
 
-        if (Cookie::get('currency') != $currency) {
-            Cookie::make('currency', $currency, time() + 60 * 60 * 24 * 30);
+        if (Cookie::get($this->app['config']['currency.cookie_name']) != $currency) {
+            $cookie = Cookie::make($this->app['config']['currency.cookie_name'], $currency, $this->app['config']['currency.cookie_days'] * 24 * 60);
+            // Queues the cookie so it's automatically added to the next response
+            \Cookie::queue($cookie);
         }
     }
 
