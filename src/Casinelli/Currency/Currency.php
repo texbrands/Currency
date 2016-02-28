@@ -56,25 +56,17 @@ class Currency
 
     public function format($number, $currency = null, $symbolStyle = '%symbol%', $inverse = false, $roundingType = '', $precision = null, $decimalPlace = null)
     {
-        if ($currency && $this->hasCurrency($currency)) {
-            $symbolLeft = $this->currencies[$currency]['symbol_left'];
-            $symbolRight = $this->currencies[$currency]['symbol_right'];
-            if (is_null($decimalPlace)) {
-                $decimalPlace = $this->currencies[$currency]['decimal_place'];
-            }
-            $decimalPoint = $this->currencies[$currency]['decimal_point'];
-            $thousandPoint = $this->currencies[$currency]['thousand_point'];
-        } else {
-            $symbolLeft = $this->currencies[$this->code]['symbol_left'];
-            $symbolRight = $this->currencies[$this->code]['symbol_right'];
-            if (is_null($decimalPlace)) {
-                $decimalPlace = $this->currencies[$this->code]['decimal_place'];
-            }
-            $decimalPoint = $this->currencies[$this->code]['decimal_point'];
-            $thousandPoint = $this->currencies[$this->code]['thousand_point'];
-
+        if (!$currency || !$this->hasCurrency($currency)) {
             $currency = $this->code;
         }
+
+        $symbolLeft = $this->currencies[$currency]['symbol_left'];
+        $symbolRight = $this->currencies[$currency]['symbol_right'];
+        if (is_null($decimalPlace)) {
+            $decimalPlace = $this->currencies[$currency]['decimal_place'];
+        }
+        $decimalPoint = $this->currencies[$currency]['decimal_point'];
+        $thousandPoint = $this->currencies[$currency]['thousand_point'];
 
         if ($value = $this->currencies[$currency]['value']) {
             if ($inverse) {
