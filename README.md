@@ -24,7 +24,7 @@ Once Currency is installed you need to register the service provider with the ap
 ~~~php
 'providers' => [
 
-    'Casinelli\Currency\CurrencyServiceProvider',
+    Casinelli\Currency\CurrencyServiceProvider::class,
 
 ]
 ~~~
@@ -34,7 +34,7 @@ Currency also ships with a facade which provides the static syntax for creating 
 ~~~php
 'aliases' => [
 
-    'Currency' => 'Casinelli\Currency\Facades\Currency',
+    'Currency' => Casinelli\Currency\Facades\Currency::class,
 
 ]
 ~~~
