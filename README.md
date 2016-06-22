@@ -55,7 +55,7 @@ By default exchange rates are updated from Finance Yahoo.com.
 php artisan currency:update
 ~~~
 
-To upate from OpenExchangeRates.org
+To update from OpenExchangeRates.org
 
 ~~~
 php artisan currency:update --openexchangerates
