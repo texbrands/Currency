@@ -69,7 +69,7 @@ class CurrencyServiceProvider extends ServiceProvider
      */
     public function registerCurrencyCommands()
     {
-        $this->app->singleton('share', function ($app) {
+        $this->app->singleton('currency.update', function ($app) {
             return new Commands\CurrencyUpdateCommand($app);
         });
 
