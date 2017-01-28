@@ -59,7 +59,7 @@ class CurrencyServiceProvider extends ServiceProvider
      */
     public function registerCurrency()
     {
-        $this->app['currency'] = $this->app->share(function ($app) {
+        $this->app->singleton('currency', function ($app) {
             return new Currency($app);
         });
     }
@@ -69,11 +69,11 @@ class CurrencyServiceProvider extends ServiceProvider
      */
     public function registerCurrencyCommands()
     {
-        $this->app['currency.update'] = $this->app->share(function ($app) {
+        $this->app->singleton('share', function ($app) {
             return new Commands\CurrencyUpdateCommand($app);
         });
 
-        $this->app['currency.cleanup'] = $this->app->share(function ($app) {
+        $this->app->singleton('currency.cleanup', function ($app) {
             return new Commands\CurrencyCleanupCommand();
         });
     }
