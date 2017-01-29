@@ -171,13 +171,13 @@ class Currency
         $this->code = $currency;
 
         if (Session::get('currency') != $currency) {
-            Session::set('currency', $currency);
+            Session::put('currency', $currency);
         }
 
         if (Cookie::get($this->app['config']['currency.cookie_name']) != $currency) {
             $cookie = Cookie::make($this->app['config']['currency.cookie_name'], $currency, $this->app['config']['currency.cookie_days'] * 24 * 60);
             // Queues the cookie so it's automatically added to the next response
-            \Cookie::queue($cookie);
+            Cookie::queue($cookie);
         }
     }
 
