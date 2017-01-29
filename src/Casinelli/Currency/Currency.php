@@ -3,8 +3,8 @@
 namespace Casinelli\Currency;
 
 use Cache;
-use Input;
 use Cookie;
+use Input;
 use Session;
 
 class Currency
@@ -89,34 +89,34 @@ class Currency
         }
 
         switch ($roundingType) {
-            case 'ceil':
-            case 'ceiling':
-                if ($precision != null) {
-                    $multiplier = pow(10, -(int) $precision);
-                } else {
-                    $multiplier = pow(10, -(int) $decimalPlace);
-                }
+        case 'ceil':
+        case 'ceiling':
+            if ($precision != null) {
+                $multiplier = pow(10, -(int) $precision);
+            } else {
+                $multiplier = pow(10, -(int) $decimalPlace);
+            }
 
-                $string .= number_format(ceil($value / $multiplier) * $multiplier, (int) $decimalPlace, $decimalPoint, $thousandPoint);
-                break;
+            $string .= number_format(ceil($value / $multiplier) * $multiplier, (int) $decimalPlace, $decimalPoint, $thousandPoint);
+            break;
 
-            case 'floor':
-                if ($precision != null) {
-                    $multiplier = pow(10, -(int) $precision);
-                } else {
-                    $multiplier = pow(10, -(int) $decimalPlace);
-                }
+        case 'floor':
+            if ($precision != null) {
+                $multiplier = pow(10, -(int) $precision);
+            } else {
+                $multiplier = pow(10, -(int) $decimalPlace);
+            }
 
-                $string .= number_format(floor($value / $multiplier) * $multiplier, (int) $decimalPlace, $decimalPoint, $thousandPoint);
-                break;
+            $string .= number_format(floor($value / $multiplier) * $multiplier, (int) $decimalPlace, $decimalPoint, $thousandPoint);
+            break;
 
-            default:
-                if ($precision == null) {
-                    $precision = (int) $decimalPlace;
-                }
+        default:
+            if ($precision == null) {
+                $precision = (int) $decimalPlace;
+            }
 
-                $string .= number_format(round($value, (int) $precision), (int) $decimalPlace, $decimalPoint, $thousandPoint);
-                break;
+            $string .= number_format(round($value, (int) $precision), (int) $decimalPlace, $decimalPoint, $thousandPoint);
+            break;
         }
 
         if ($symbolRight) {
